@@ -18,7 +18,7 @@ Provide a short description of what the app does (< 1000 characters).
 
 ## MVP
 
-Choose the core feature that most defines your app and you’ll start to tackle first (e.g. "Users should be able to take a picture of a food item with their smartphone and receives a list of recipes based on that ingredient").
+Choose the core feature that most defines your app and you’ll start to tackle first (e.g. "Users should be able to take a picture of a food item with their smartphone and receive a list of recipes based on that ingredient").
 
 **Answer:**
 
