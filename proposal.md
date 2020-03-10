@@ -6,7 +6,7 @@ Choose a name for your project. Don’t worry, it doesn’t need to be fancy, it
 
 ## Repository
 
-Create a GitHub repo to host your project and paste its URL here.
+Create a public GitHub repo to host your project and paste its URL here.
 
 **Answer:**
 
