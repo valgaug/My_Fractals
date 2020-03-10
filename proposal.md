@@ -4,7 +4,7 @@ Choose a name for your project. Don’t worry, it doesn’t need to be fancy, it
 
 **Answer:**
 
-## Project repo
+## Repository
 
 Create a GitHub repo to host your project and paste its URL here.
 
