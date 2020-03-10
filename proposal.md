@@ -4,6 +4,12 @@ Choose a name for your project. Don’t worry, it doesn’t need to be fancy, it
 
 **Answer:**
 
+## Project repo
+
+Create a GitHub repo to host your project and paste its URL here.
+
+**Answer:**
+
 ## One liner
 
 Write a very short sentence (< 10 words) that describes what your app is about (e.g. "Airbnb for boats", or "Movies recommendation engine").
