@@ -4,20 +4,23 @@ import './style.css';
 
 function Tree() {
   const [angle, setAngle] = useState(45);
-  let theta;
+  const [iteration, setIteration] = useState(6);
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(500, 500).parent(canvasParentRef);
   };
 
   const draw = (p5) => {
+    let theta;
+    let recursion = 0;
+
     const branch = (h) => {
       // Each branch will be 2/3rds the size of the previous one
       h *= 0.66;
-
       // All recursive functions must have an exit condition!!!!
       // Here, ours is when the length of the branch is 2 pixels or less
-      if (h > 2) {
+      if (recursion < iteration) {
+        recursion++;
         p5.push(); // Save the current state of transformation (i.e. where are we now)
         p5.rotate(theta); // Rotate by theta
         p5.line(0, 0, 0, -h); // Draw the branch
@@ -32,6 +35,7 @@ function Tree() {
         p5.translate(0, -h);
         branch(h);
         p5.pop();
+        recursion--;
       }
     };
 
@@ -56,7 +60,22 @@ function Tree() {
   return (
     <div className='Tree'>
       <Sketch setup={setup} draw={draw} />
+
       <form>
+        <label for='iteration'>Iteration: {iteration}</label>
+        <input
+          type='range'
+          name='tree'
+          id='iteration'
+          min='0'
+          max='12'
+          step='1'
+          value={iteration}
+          onChange={(e) => {
+            setIteration(e.target.value);
+          }}
+        ></input>
+
         <label for='angle'>Angle: {angle}°</label>
         <input
           type='range'
@@ -64,6 +83,7 @@ function Tree() {
           id='angle'
           min='0'
           max='90'
+          step='1'
           value={angle}
           onChange={(e) => {
             setAngle(e.target.value);
