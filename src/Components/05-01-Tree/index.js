@@ -105,12 +105,11 @@ function Tree({ hide, setHide }) {
             setRatio(e.target.value);
           }}
         ></input>
-        <br />
-        <div className='buttons'>
-          <button>Submit</button>
-          <button onClick={saveCanvasAsImage}>Download</button>
-        </div>
       </form>
+      <div className='buttons'>
+        <button>Submit</button>
+        <button onClick={saveCanvasAsImage}>Download</button>
+      </div>
       <div className='close' onClick={() => setHide(true)}>
         X
       </div>
