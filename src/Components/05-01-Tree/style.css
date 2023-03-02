@@ -1,0 +1,22 @@
+.tree {
+  border: solid black;
+  padding-bottom: 20px;
+}
+
+.react-p5 {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  text-align: center;
+}
+
+input {
+  margin: 5px;
+  width: 200px;
+}
+
+button {
+  width: 200px;
+}

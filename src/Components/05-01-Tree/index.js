@@ -59,11 +59,12 @@ function Tree() {
   };
 
   return (
-    <div className='Tree'>
+    <div className='tree'>
       <Sketch setup={setup} draw={draw} />
 
       <form>
-        <label for='iteration'>Iterations: {iteration}</label>
+        <label>Iterations: {iteration}</label>
+        <br />
         <input
           type='range'
           name='tree'
@@ -75,9 +76,10 @@ function Tree() {
           onChange={(e) => {
             setIteration(e.target.value);
           }}
-        ></input>
-
-        <label for='angle'>Angle: {angle}°</label>
+        ></input>{' '}
+        <br />
+        <label>Angle: {angle}°</label>
+        <br />
         <input
           type='range'
           name='tree'
@@ -90,8 +92,9 @@ function Tree() {
             setAngle(e.target.value);
           }}
         ></input>
-
-        <label for='ratio'>Branch ratio: {ratio}</label>
+        <br />
+        <label>Branch ratio: {ratio}</label>
+        <br />
         <input
           type='range'
           name='tree'
@@ -104,8 +107,10 @@ function Tree() {
             setRatio(e.target.value);
           }}
         ></input>
-
+        <br />
         <input type='submit' />
+        <br />
+        <button>Download</button>
       </form>
     </div>
   );
