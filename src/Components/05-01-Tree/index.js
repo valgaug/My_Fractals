@@ -104,10 +104,9 @@ function Tree() {
           <button>Download</button>
         </div>
       </form>
-      {/* <div className='close' onClick={setHide(true)}>
+      <div className='close' onClick={() => setHide(true)}>
         X
-      </div> */}
-      <div className='close'>X</div>
+      </div>
     </div>
   );
 }
