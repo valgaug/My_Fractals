@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Sketch from 'react-p5';
 import './style.css';
-import InputRange from 'react-input-range';
 
 function Tree() {
   const [angle, setAngle] = useState(45);
@@ -57,16 +56,20 @@ function Tree() {
   return (
     <div className='Tree'>
       <Sketch setup={setup} draw={draw} />
-      <input
-        name='angle'
-        type='range'
-        min='0'
-        max='90'
-        value={angle}
-        onChange={(e) => {
-          setAngle(e.target.value);
-        }}
-      ></input>
+      <form>
+        <label for='angle'>Angle: {angle}°</label>
+        <input
+          type='range'
+          name='tree'
+          id='angle'
+          min='0'
+          max='90'
+          value={angle}
+          onChange={(e) => {
+            setAngle(e.target.value);
+          }}
+        ></input>
+      </form>
     </div>
   );
 }
