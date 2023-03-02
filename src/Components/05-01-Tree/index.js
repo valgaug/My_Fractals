@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import Sketch from 'react-p5';
 import './style.css';
 
-function Tree() {
+function Tree({ hide, setHide }) {
   const [iteration, setIteration] = useState(6);
   const [angle, setAngle] = useState(45);
   const [ratio, setRatio] = useState(0.55);
-  const [hide, setHide] = useState(false);
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 550).parent(canvasParentRef);

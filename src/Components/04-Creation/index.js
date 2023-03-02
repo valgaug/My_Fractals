@@ -1,12 +1,12 @@
 import React from 'react';
 import './style.css';
 
-function Creation() {
+function Creation({ setHide }) {
   return (
     <div className='creation'>
       <div className='sym-tree'>
         <img src='' alt='Symetric tree'></img>
-        <button>Symetric tree</button>
+        <button onClick={() => setHide(false)}>Symetric tree</button>
       </div>
     </div>
   );

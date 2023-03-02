@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './App.css';
 import Navbar from './Components/01-NavBar';
 import Title from './Components/02-Title';
@@ -6,13 +7,15 @@ import Creation from './Components/04-Creation';
 import Tree from './Components/05-01-Tree';
 
 function App() {
+  const [hide, setHide] = useState(false);
+
   return (
     <div className='App'>
       <Navbar />
       <Title />
       <Collection />
-      <Creation />
-      <Tree />
+      <Creation setHide={setHide} />
+      <Tree hide={hide} setHide={setHide} />
     </div>
   );
 }
