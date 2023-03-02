@@ -3,11 +3,12 @@ import Sketch from 'react-p5';
 import './style.css';
 
 function Tree() {
-  const [angle, setAngle] = useState(45);
   const [iteration, setIteration] = useState(6);
+  const [angle, setAngle] = useState(45);
+  const [ratio, setRatio] = useState(0.66);
 
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(500, 500).parent(canvasParentRef);
+    p5.createCanvas(730, 550).parent(canvasParentRef);
   };
 
   const draw = (p5) => {
@@ -16,7 +17,7 @@ function Tree() {
 
     const branch = (h) => {
       // Each branch will be 2/3rds the size of the previous one
-      h *= 0.66;
+      h *= ratio;
       // All recursive functions must have an exit condition!!!!
       // Here, ours is when the length of the branch is 2 pixels or less
       if (recursion < iteration) {
@@ -39,9 +40,9 @@ function Tree() {
       }
     };
 
-    p5.background(0);
-    p5.frameRate(30);
-    p5.stroke(255);
+    p5.background(255);
+    // p5.frameRate(30);
+    p5.stroke(0);
     // Let's pick an angle 0 to 90 degrees based on the mouse position
     // let a = (p5.mouseX / p5.width) * 90;
     let a = angle;
@@ -62,7 +63,7 @@ function Tree() {
       <Sketch setup={setup} draw={draw} />
 
       <form>
-        <label for='iteration'>Iteration: {iteration}</label>
+        <label for='iteration'>Iterations: {iteration}</label>
         <input
           type='range'
           name='tree'
@@ -89,6 +90,22 @@ function Tree() {
             setAngle(e.target.value);
           }}
         ></input>
+
+        <label for='ratio'>Branch ratio: {ratio}</label>
+        <input
+          type='range'
+          name='tree'
+          id='ratio'
+          min='0.4'
+          max='0.79'
+          step='0.01'
+          value={ratio}
+          onChange={(e) => {
+            setRatio(e.target.value);
+          }}
+        ></input>
+
+        <input type='submit' />
       </form>
     </div>
   );
