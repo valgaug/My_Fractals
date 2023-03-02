@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sketch from 'react-p5';
 import './style.css';
+import InputRange from 'react-input-range';
 
 function Tree() {
+  const [angle, setAngle] = useState(45);
   let theta;
 
   const setup = (p5, canvasParentRef) => {
@@ -38,8 +40,8 @@ function Tree() {
     p5.frameRate(30);
     p5.stroke(255);
     // Let's pick an angle 0 to 90 degrees based on the mouse position
-    let a = (p5.mouseX / p5.width) * 90;
-    // let a = 45;
+    // let a = (p5.mouseX / p5.width) * 90;
+    let a = angle;
     // Convert it to radians
     theta = p5.radians(a);
     // Start the tree from the bottom of the screen
@@ -55,6 +57,16 @@ function Tree() {
   return (
     <div className='Tree'>
       <Sketch setup={setup} draw={draw} />
+      <input
+        name='angle'
+        type='range'
+        min='0'
+        max='90'
+        value={angle}
+        onChange={(e) => {
+          setAngle(e.target.value);
+        }}
+      ></input>
     </div>
   );
 }
