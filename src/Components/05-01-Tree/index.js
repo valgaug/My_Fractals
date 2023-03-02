@@ -5,7 +5,8 @@ import './style.css';
 function Tree() {
   const [iteration, setIteration] = useState(6);
   const [angle, setAngle] = useState(45);
-  const [ratio, setRatio] = useState(0.66);
+  const [ratio, setRatio] = useState(0.55);
+  const [hide, setHide] = useState(false);
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 550).parent(canvasParentRef);
@@ -15,15 +16,13 @@ function Tree() {
     let theta;
     let recursion = 0;
 
+    //recursive branch function
     const branch = (h) => {
-      // Each branch will be 2/3rds the size of the previous one
       h *= ratio;
-      // All recursive functions must have an exit condition!!!!
-      // Here, ours is when the length of the branch is 2 pixels or less
       if (recursion < iteration) {
         recursion++;
         p5.push(); // Save the current state of transformation (i.e. where are we now)
-        p5.rotate(theta); // Rotate by theta
+        p5.rotate(theta);
         p5.line(0, 0, 0, -h); // Draw the branch
         p5.translate(0, -h); // Move to the end of the branch
         branch(h); // Ok, now call myself to draw two new branches!!
@@ -41,25 +40,17 @@ function Tree() {
     };
 
     p5.background(255);
-    // p5.frameRate(30);
     p5.stroke(0);
-    // Let's pick an angle 0 to 90 degrees based on the mouse position
-    // let a = (p5.mouseX / p5.width) * 90;
     let a = angle;
-    // Convert it to radians
     theta = p5.radians(a);
-    // Start the tree from the bottom of the screen
     p5.translate(p5.width / 2, p5.height);
-    // Draw a line 120 pixels
     p5.line(0, 0, 0, -120);
-    // Move to the end of that line
     p5.translate(0, -120);
-    // Start the recursive branching!
     branch(120);
   };
 
   return (
-    <div className='tree'>
+    <div className='tree' style={{ display: hide ? 'none' : 'block' }}>
       <Sketch setup={setup} draw={draw} />
 
       <form>
@@ -99,7 +90,7 @@ function Tree() {
           type='range'
           name='tree'
           id='ratio'
-          min='0.4'
+          min='0.5'
           max='0.79'
           step='0.01'
           value={ratio}
@@ -108,10 +99,15 @@ function Tree() {
           }}
         ></input>
         <br />
-        <input type='submit' />
-        <br />
-        <button>Download</button>
+        <div className='buttons'>
+          <button>Submit</button>
+          <button>Download</button>
+        </div>
       </form>
+      {/* <div className='close' onClick={setHide(true)}>
+        X
+      </div> */}
+      <div className='close'>X</div>
     </div>
   );
 }

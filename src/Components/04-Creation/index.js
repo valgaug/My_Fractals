@@ -4,7 +4,10 @@ import './style.css';
 function Creation() {
   return (
     <div className='creation'>
-      Creation
+      <div className='sym-tree'>
+        <img src='' alt='Symetric tree'></img>
+        <button>Symetric tree</button>
+      </div>
     </div>
   );
 }
