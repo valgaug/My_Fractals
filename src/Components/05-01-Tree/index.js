@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Sketch from 'react-p5';
 import './style.css';
+import canvasToImage from 'canvas-to-image';
 
 function Tree({ hide, setHide }) {
   const [iteration, setIteration] = useState(6);
   const [angle, setAngle] = useState(45);
   const [ratio, setRatio] = useState(0.55);
+  const canvasRef = useRef(null);
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 550).parent(canvasParentRef);
+    canvasRef.current = p5.canvas;
   };
 
   const draw = (p5) => {
@@ -46,6 +49,11 @@ function Tree({ hide, setHide }) {
     p5.line(0, 0, 0, -120);
     p5.translate(0, -120);
     branch(120);
+  };
+
+  const saveCanvasAsImage = async () => {
+    canvasToImage(canvasRef.current);
+    setHide(false);
   };
 
   return (
@@ -100,7 +108,7 @@ function Tree({ hide, setHide }) {
         <br />
         <div className='buttons'>
           <button>Submit</button>
-          <button>Download</button>
+          <button onClick={saveCanvasAsImage}>Download</button>
         </div>
       </form>
       <div className='close' onClick={() => setHide(true)}>

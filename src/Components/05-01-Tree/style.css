@@ -34,9 +34,16 @@ button {
 }
 
 .close {
+  background-color: buttonface;
+  border-radius: 4px;
+  cursor: default;
   border: solid black;
   padding: 2px;
   position: absolute;
   top: 2px;
   right: 2px;
+}
+
+.close:hover {
+  background-color: rgb(117, 113, 113);
 }
