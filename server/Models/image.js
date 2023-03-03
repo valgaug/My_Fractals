@@ -4,11 +4,8 @@ const mongoose = require('.');
 const Schema = mongoose.Schema;
 
 const imageSchema = new Schema({
-  author: String,
-  img: {
-    data: Buffer,
-    contentType: String,
-  },
+  data: Buffer,
+  contentType: String,
 });
 
 const User = mongoose.model('image', imageSchema);

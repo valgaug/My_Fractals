@@ -27,8 +27,13 @@ export const postEvent = async (event) => {
   await fetch(url + '/event', requestOptions);
 };
 
-export const getEvents = async () => {
-  let res = await fetch(url + '/event');
-  let events = await res.json();
-  return events;
+export const getSources = async () => {
+  let res = await fetch(url + '/image');
+  let buffer_images = await res.text();
+  let json_images = JSON.parse(buffer_images);
+  // var image = new Image();
+  let sources = json_images.map((source) => `data:image/png;base64,${source}`);
+  // let source = `data:image/png;base64,${json_images[0]}`;
+  // console.log(image);
+  return sources;
 };

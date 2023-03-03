@@ -1,21 +1,32 @@
 'use strict';
 
 const image = require('../Models/image');
+const fs = require('fs');
+const path = require('path');
 
 exports.getImages = async (req, res) => {
   try {
-    const images = await image.find();
-    res.status(200);
+    const buffer_images = await image.find();
+    const images = buffer_images.map((img) =>
+      Buffer.from(img.data, 'base64').toString('base64')
+    );
     res.send(images);
   } catch (e) {
+    console.log(e);
     res.sendStatus(500);
   }
 };
 
 exports.postImage = async (req, res) => {
   try {
-    // const createdImage = await image.create(req.body);
-    res.send(JSON.stringify('Image Uploaded'));
+    let img = {
+      data: fs.readFileSync(
+        path.join(__dirname + '/../Images/' + req.file.filename)
+      ),
+      contentType: 'image/png',
+    };
+    await image.create(img);
+    res.send('Image Uploaded');
   } catch (e) {
     res.sendStatus(500);
   }
