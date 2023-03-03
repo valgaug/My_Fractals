@@ -13,3 +13,30 @@
   padding-top: 61.3%;
   z-index: -1;
 }
+
+@font-face {
+  font-family: 'Home1';
+  src: local('ClimateCrisis-Regular.ttf'),
+    url('./fonts/ClimateCrisis-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home2';
+  src: local('SairaStencilOne-Regular.ttf'),
+    url('./fonts/SairaStencilOne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home3';
+  src: local('Yaahowu.ttf'), url('./fonts/Yaahowu.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home4';
+  src: local('Bavistage.otf'), url('./fonts/Bavistage.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home5';
+  src: local('Motherva.otf'), url('./fonts/Motherva.otf') format('truetype');
+}

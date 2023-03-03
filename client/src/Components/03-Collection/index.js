@@ -4,7 +4,6 @@ import './style.css';
 function Collection({ sources }) {
   return (
     <div className='collection'>
-      Collection
       {sources &&
         sources.map((source, i) => (
           <div className='collec_image' key={i}>

@@ -11,7 +11,7 @@ function Tree({ hide, setHide, post, setPost }) {
   const canvasRef = useRef(null);
 
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(730, 550).parent(canvasParentRef);
+    p5.createCanvas(730, 520).parent(canvasParentRef);
     canvasRef.current = p5.canvas;
   };
 
@@ -42,8 +42,8 @@ function Tree({ hide, setHide, post, setPost }) {
       }
     };
 
-    p5.background(255);
-    p5.stroke(0);
+    p5.background(0);
+    p5.stroke(255);
     let a = angle;
     theta = p5.radians(a);
     p5.translate(p5.width / 2, p5.height);

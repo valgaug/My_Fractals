@@ -1,15 +1,22 @@
-.creation-title {
-  margin-top: 30px;
-  text-align: center;
+.creation {
+  margin-top: 40px;
+  position: relative;
+  font-size: xx-large;
+  background: linear-gradient(
+    0deg,
+    /* rgba(2, 0, 36, 1) 0%, */ rgb(3, 3, 40) 35%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 
-.creation {
-  border: solid black;
-  font-size: xx-large;
+.creation-title {
+  padding-left: 30px;
+  margin-top: 30px;
+  font-family: 'Home1';
 }
 
 .fractals {
-  height: 600px;
+  height: 300px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

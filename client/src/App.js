@@ -6,7 +6,7 @@ import Collection from './Components/03-Collection';
 import Creation from './Components/04-Creation';
 import Tree from './Components/05-01-Tree';
 import * as ApiService from './ApiService';
-import homeFractal from './assets/fractal-home.jpeg';
+import './fonts/ClimateCrisis-Regular.ttf';
 
 function App() {
   const [hide, setHide] = useState(true);
@@ -25,11 +25,7 @@ function App() {
     <div className='App'>
       <Navbar />
       <Title />
-      <div className='nav-title'>
-        {/* <div className='home-image'> */}
-        {/* <img src={homeFractal} alt='' /> */}
-        {/* </div> */}
-      </div>
+      <div className='nav-title'></div>
       <Collection sources={sources} />
       <Creation setHide={setHide} />
       <Tree hide={hide} setHide={setHide} post={post} setPost={setPost} />
