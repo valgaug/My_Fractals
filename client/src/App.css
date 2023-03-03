@@ -2,3 +2,14 @@
   display: flex;
   flex-direction: column;
 }
+
+.nav-title {
+  position: absolute;
+  background-image: url(./assets/fractal-home.jpeg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 0;
+  padding-top: 61.3%;
+  z-index: -1;
+}

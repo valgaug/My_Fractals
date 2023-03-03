@@ -3,4 +3,5 @@
   height: 1000px;
   width: 500px;
   align-self: center;
+  overflow-y: scroll;
 }

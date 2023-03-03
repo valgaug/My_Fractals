@@ -4,7 +4,7 @@ import './style.css';
 import canvasToImage from 'canvas-to-image';
 import * as ApiService from '../../ApiService';
 
-function Tree({ hide, setHide }) {
+function Tree({ hide, setHide, post, setPost }) {
   const [iteration, setIteration] = useState(6);
   const [angle, setAngle] = useState(45);
   const [ratio, setRatio] = useState(0.55);
@@ -57,7 +57,9 @@ function Tree({ hide, setHide }) {
   };
 
   const postCanvasAsImage = async () => {
-    ApiService.postImage(canvasRef.current);
+    await ApiService.postImage(canvasRef.current);
+    setHide(true);
+    setPost(!post);
   };
 
   return (

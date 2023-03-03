@@ -1,18 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './style.css';
-import * as ApiService from '../../ApiService';
 
-function Collection() {
-  const [sources, setSources] = useState([]);
-
-  useEffect(() => {
-    async function fetching() {
-      let sources = await ApiService.getSources();
-      setSources(sources);
-    }
-    fetching();
-  }, []);
-
+function Collection({ sources }) {
   return (
     <div className='collection'>
       Collection
