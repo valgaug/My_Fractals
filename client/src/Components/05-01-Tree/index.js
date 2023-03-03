@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import Sketch from 'react-p5';
 import './style.css';
 import canvasToImage from 'canvas-to-image';
+import * as ApiService from '../../ApiService';
 
 function Tree({ hide, setHide }) {
   const [iteration, setIteration] = useState(6);
@@ -55,6 +56,10 @@ function Tree({ hide, setHide }) {
     canvasToImage(canvasRef.current);
   };
 
+  const postCanvasAsImage = async () => {
+    ApiService.postImage(canvasRef.current);
+  };
+
   return (
     <div className='tree' style={{ display: hide ? 'none' : 'block' }}>
       <Sketch setup={setup} draw={draw} />
@@ -106,7 +111,7 @@ function Tree({ hide, setHide }) {
         ></input>
       </form>
       <div className='buttons'>
-        <button>Submit</button>
+        <button onClick={postCanvasAsImage}>Submit</button>
         <button onClick={saveCanvasAsImage}>Download</button>
       </div>
       <div className='close' onClick={() => setHide(true)}>

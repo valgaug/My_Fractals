@@ -26,7 +26,7 @@ exports.postImage = async (req, res) => {
       contentType: 'image/png',
     };
     await image.create(img);
-    res.send('Image Uploaded');
+    res.send(JSON.stringify('Image Uploaded'));
   } catch (e) {
     res.sendStatus(500);
   }
