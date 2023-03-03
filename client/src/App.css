@@ -40,3 +40,8 @@
   font-family: 'Home5';
   src: local('Motherva.otf'), url('./fonts/Motherva.otf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Home6';
+  src: local('Petrona-Bold'), url('./fonts/Petrona-Bold.ttf') format('truetype');
+}

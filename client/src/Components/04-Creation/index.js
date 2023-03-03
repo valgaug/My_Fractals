@@ -6,7 +6,7 @@ import asymTreePic from '../../assets/asym-tree-pic.png';
 function Creation({ setHide }) {
   return (
     <div className='creation'>
-      <div className='creation-title'>2D CREATION</div>
+      <div className='creation-title'>2D Creation</div>
       <div className='fractals'>
         <div className='creation-tree' id='sym-tree'>
           <img src={symTreePic} alt='Symetric tree'></img>
@@ -14,7 +14,7 @@ function Creation({ setHide }) {
         </div>
         <div className='creation-tree' id='asym-tree'>
           <img src={asymTreePic} alt='Symetric tree'></img>
-          <button onClick={() => setHide(false)}>Asymetric tree</button>
+          <button onClick={() => setHide(false)}>Pythagoras tree</button>
         </div>
       </div>
     </div>
