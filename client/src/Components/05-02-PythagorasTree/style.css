@@ -1,0 +1,56 @@
+.tree {
+  position: fixed;
+  width: 730px;
+  height: 730px;
+  border: solid black;
+  padding-bottom: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.p5Canvas {
+  border-radius: 40px 40px 0 0;
+}
+
+form {
+  text-align: center;
+  margin-top: 8px;
+}
+
+input {
+  margin: 2px 0 7px 0;
+  width: 200px;
+}
+
+button {
+  margin-top: 5px;
+  padding: 3px;
+  width: 100px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.close {
+  text-align: center;
+  background-color: buttonface;
+  border-radius: 4px;
+  cursor: default;
+  border: solid black;
+  padding: 2px;
+  position: absolute;
+  width: 20px;
+  top: 20px;
+  right: 20px;
+}
+
+.close:hover {
+  background-color: rgb(117, 113, 113);
+}

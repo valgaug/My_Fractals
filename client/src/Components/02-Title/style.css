@@ -1,11 +1,11 @@
 .title {
   color: white;
   height: 45vw;
-  font-family: 'Home4';
+  font-family: 'Home8';
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 200px;
+  font-size: 180px;
   letter-spacing: 10px;
   font-weight: bold;
 }

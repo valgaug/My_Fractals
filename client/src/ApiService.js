@@ -19,5 +19,6 @@ export const getSources = async () => {
   let buffer_images = await res.text();
   let json_images = JSON.parse(buffer_images);
   let sources = json_images.map((source) => `data:image/png;base64,${source}`);
-  return sources;
+  let reversed = sources.reverse();
+  return reversed;
 };
