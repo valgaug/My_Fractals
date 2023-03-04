@@ -6,7 +6,8 @@ import * as ApiService from '../../ApiService';
 
 function Tree({ hide, setHide, post, setPost }) {
   const [iteration, setIteration] = useState(6);
-  const [angle, setAngle] = useState(45);
+  const [rightAngle, setRightAngle] = useState(30);
+  const [leftAngle, setLeftAngle] = useState(30);
   const [ratio, setRatio] = useState(0.55);
   const canvasRef = useRef(null);
 
@@ -16,7 +17,8 @@ function Tree({ hide, setHide, post, setPost }) {
   };
 
   const draw = (p5) => {
-    let theta;
+    let rightTheta;
+    let leftTheta;
     let recursion = 0;
 
     //recursive branch function
@@ -24,16 +26,17 @@ function Tree({ hide, setHide, post, setPost }) {
       h *= ratio;
       if (recursion < iteration) {
         recursion++;
+        // right branches
         p5.push(); // Save the current state of transformation (i.e. where are we now)
-        p5.rotate(theta);
-        p5.line(0, 0, 0, -h); // Draw the branch
-        p5.translate(0, -h); // Move to the end of the branch
-        branch(h); // Ok, now call myself to draw two new branches!!
-        p5.pop(); // Whenever we get back here, we "pop" in order to restore the previous matrix state
+        p5.rotate(rightTheta);
+        p5.line(0, 0, 0, -h);
+        p5.translate(0, -h);
+        branch(h);
+        p5.pop(); // Restore the previous matrix state
 
-        // Repeat the same thing, only branch off to the "left" this time!
+        // left branches
         p5.push();
-        p5.rotate(-theta);
+        p5.rotate(-leftTheta);
         p5.line(0, 0, 0, -h);
         p5.translate(0, -h);
         branch(h);
@@ -44,8 +47,9 @@ function Tree({ hide, setHide, post, setPost }) {
 
     p5.background(0);
     p5.stroke(255);
-    let a = angle;
-    theta = p5.radians(a);
+
+    rightTheta = p5.radians(rightAngle);
+    leftTheta = p5.radians(leftAngle);
     p5.translate(p5.width / 2, p5.height);
     p5.line(0, 0, 0, -120);
     p5.translate(0, -120);
@@ -67,50 +71,72 @@ function Tree({ hide, setHide, post, setPost }) {
       <Sketch setup={setup} draw={draw} />
 
       <form>
-        <label>Iterations: {iteration}</label>
-        <br />
-        <input
-          type='range'
-          name='tree'
-          id='iteration'
-          min='0'
-          max='12'
-          step='1'
-          value={iteration}
-          onChange={(e) => {
-            setIteration(e.target.value);
-          }}
-        ></input>{' '}
-        <br />
-        <label>Angle: {angle}°</label>
-        <br />
-        <input
-          type='range'
-          name='tree'
-          id='angle'
-          min='0'
-          max='90'
-          step='1'
-          value={angle}
-          onChange={(e) => {
-            setAngle(e.target.value);
-          }}
-        ></input>
-        <br />
-        <label>Branch ratio: {ratio}</label>
-        <br />
-        <input
-          type='range'
-          name='tree'
-          id='ratio'
-          min='0.5'
-          max='0.79'
-          step='0.01'
-          value={ratio}
-          onChange={(e) => {
-            setRatio(e.target.value);
-          }}
-        ></input>
+        <div className='parameter'>
+          <span>Iterations:</span>
+          <label>{iteration}</label>
+          <input
+            type='range'
+            name='tree'
+            id='iteration'
+            min='0'
+            max='12'
+            step='1'
+            value={iteration}
+            onChange={(e) => {
+              setIteration(e.target.value);
+            }}
+          ></input>
+        </div>
+        <div className='parameter'>
+          <span>Right Angle:</span>
+          <label>{rightAngle}°</label>
+          <input
+            type='range'
+            name='tree'
+            id='angle'
+            min='0'
+            max='90'
+            step='1'
+            value={rightAngle}
+            onChange={(e) => {
+              setRightAngle(e.target.value);
+            }}
+          ></input>
+          <br />
+        </div>
+        <div className='parameter'>
+          <span>Left Angle:</span>
+          <label>{rightAngle}°</label>
+          <input
+            type='range'
+            name='tree'
+            id='angle'
+            min='0'
+            max='90'
+            step='1'
+            value={leftAngle}
+            onChange={(e) => {
+              setLeftAngle(e.target.value);
+            }}
+          ></input>
+          <br />
+        </div>
+        <div className='parameter'>
+          <span>Branch ratio:</span>
+          <label>{ratio}</label>
+          <input
+            type='range'
+            name='tree'
+            id='ratio'
+            min='0.5'
+            max='0.79'
+            step='0.01'
+            value={ratio}
+            onChange={(e) => {
+              setRatio(e.target.value);
+            }}
+          ></input>
+        </div>
       </form>
       <div className='buttons'>
         <button onClick={postCanvasAsImage}>Submit</button>

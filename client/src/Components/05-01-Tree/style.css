@@ -1,7 +1,7 @@
 .tree {
   position: fixed;
   width: 730px;
-  height: 730px;
+  height: 670px;
   border: solid black;
   padding-bottom: 5px;
   top: 50%;
@@ -17,12 +17,26 @@
 }
 
 form {
-  text-align: center;
   margin-top: 8px;
 }
 
+.parameter {
+  display: flex;
+  justify-content: center;
+}
+
+span {
+  width: 110px;
+}
+
+label {
+  display: inline-block;
+  width: 30px;
+  font-weight: bold;
+}
+
 input {
-  margin: 2px 0 7px 0;
+  margin: 2px 0 7px 20px;
   width: 200px;
 }
 

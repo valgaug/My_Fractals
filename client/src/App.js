@@ -5,7 +5,7 @@ import Title from './Components/02-Title';
 import Collection from './Components/03-Collection';
 import Creation from './Components/04-Creation';
 import Tree from './Components/05-01-Tree';
-import PythagorasTree from './Components/05-02-PythagorasTree';
+// import Fern from './Components/05-02-Fern';
 import * as ApiService from './ApiService';
 import './fonts/ClimateCrisis-Regular.ttf';
 
@@ -30,12 +30,7 @@ function App() {
       <Collection sources={sources} />
       <Creation setHide={setHide} />
       <Tree hide={hide} setHide={setHide} post={post} setPost={setPost} />
-      <PythagorasTree
-        hide={hide}
-        setHide={setHide}
-        post={post}
-        setPost={setPost}
-      />
+      {/* <Fern hide={hide} setHide={setHide} post={post} setPost={setPost} /> */}
     </div>
   );
 }
