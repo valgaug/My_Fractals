@@ -5,10 +5,12 @@ import canvasToImage from 'canvas-to-image';
 import * as ApiService from '../../ApiService';
 
 function Fern({ hideFern, setHideFern, post, setPost }) {
+  const [iterations, setIterations] = useState(5000);
   const canvasRef = useRef(null);
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 520).parent(canvasParentRef);
+    // p5.noLoop();
     canvasRef.current = p5.canvas;
   };
 
@@ -19,9 +21,7 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
     const nextPoint = () => {
       let nextX;
       let nextY;
-
       let r = p5.random(1);
-
       if (r < 0.01) {
         //1
         nextX = 0;
@@ -39,7 +39,6 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
         nextX = -0.15 * x + 0.28 * y;
         nextY = 0.26 * x + 0.24 * y + 0.44;
       }
-
       x = nextX;
       y = nextY;
     };
@@ -47,9 +46,9 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
     p5.background(0);
     p5.stroke(255);
 
-    for (let i = 0; i < 10000; i++) {
-      let px = p5.map(x, -2.182, 2.6558, 0, p5.width);
-      let py = p5.map(y, 0, 9.9983, p5.height, 0);
+    for (let i = 0; i < iterations; i++) {
+      let px = p5.map(x, -2.182, 2.6558, 30, p5.width - 30);
+      let py = p5.map(y, 0, 9.9983, p5.height - 20, 20);
       p5.point(px, py);
       nextPoint();
     }
@@ -68,21 +67,20 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
   return (
     <div className='fern' style={{ display: hideFern ? 'none' : 'block' }}>
       <Sketch setup={setup} draw={draw} />
-
       <form>
         <div className='parameter'>
           <span>Iterations:</span>
-          {/* <label>{iteration}</label> */}
+          <label>{iterations}</label>
           <input
             type='range'
-            name='tree'
+            name='fern'
             id='iteration'
             min='0'
-            max='12'
-            step='1'
-            // value={iteration}
+            max='40000'
+            step='100'
+            value={iterations}
             onChange={(e) => {
-              // setIteration(e.target.value);
+              setIterations(e.target.value);
             }}
           ></input>
         </div>
@@ -91,7 +89,7 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
           {/* <label>{rightAngle}°</label> */}
           <input
             type='range'
-            name='tree'
+            name='fern'
             id='angle'
             min='0'
             max='90'
@@ -108,7 +106,7 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
           {/* <label>{rightAngle}°</label> */}
           <input
             type='range'
-            name='tree'
+            name='fern'
             id='angle'
             min='0'
             max='90'
@@ -125,7 +123,7 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
           {/* <label>{ratio}</label> */}
           <input
             type='range'
-            name='tree'
+            name='fern'
             id='ratio'
             min='0.5'
             max='0.79'

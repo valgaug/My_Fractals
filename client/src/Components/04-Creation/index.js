@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 import symTreePic from '../../assets/sym-tree-pic.png';
-import asymTreePic from '../../assets/asym-tree-pic.png';
+import fern from '../../assets/fern.png';
 
 function Creation({ setHideTree, setHideFern }) {
   return (
@@ -13,7 +13,7 @@ function Creation({ setHideTree, setHideFern }) {
           <button onClick={() => setHideTree(false)}>Symetric tree</button>
         </div>
         <div className='creation-tree' id='fern'>
-          <img src={asymTreePic} alt='Symetric tree'></img>
+          <img src={fern} alt='Symetric tree'></img>
           <button onClick={() => setHideFern(false)}>Fern</button>
         </div>
       </div>
