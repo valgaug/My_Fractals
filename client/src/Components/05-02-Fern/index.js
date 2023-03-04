@@ -4,11 +4,7 @@ import './style.css';
 import canvasToImage from 'canvas-to-image';
 import * as ApiService from '../../ApiService';
 
-function Tree({ hideTree, setHideTree, post, setPost }) {
-  const [iteration, setIteration] = useState(6);
-  const [rightAngle, setRightAngle] = useState(30);
-  const [leftAngle, setLeftAngle] = useState(30);
-  const [ratio, setRatio] = useState(0.55);
+function Fern({ hideFern, setHideFern, post, setPost }) {
   const canvasRef = useRef(null);
 
   const setup = (p5, canvasParentRef) => {
@@ -17,43 +13,46 @@ function Tree({ hideTree, setHideTree, post, setPost }) {
   };
 
   const draw = (p5) => {
-    let rightTheta;
-    let leftTheta;
-    let recursion = 0;
+    let x = 0;
+    let y = 0;
 
-    //recursive branch function
-    const branch = (h) => {
-      h *= ratio;
-      if (recursion < iteration) {
-        recursion++;
-        // right branches
-        p5.push(); // Save the current state of transformation (i.e. where are we now)
-        p5.rotate(rightTheta);
-        p5.line(0, 0, 0, -h);
-        p5.translate(0, -h);
-        branch(h);
-        p5.pop(); // Restore the previous matrix state
+    const nextPoint = () => {
+      let nextX;
+      let nextY;
 
-        // left branches
-        p5.push();
-        p5.rotate(-leftTheta);
-        p5.line(0, 0, 0, -h);
-        p5.translate(0, -h);
-        branch(h);
-        p5.pop();
-        recursion--;
+      let r = p5.random(1);
+
+      if (r < 0.01) {
+        //1
+        nextX = 0;
+        nextY = 0.16 * y;
+      } else if (r < 0.86) {
+        //2
+        nextX = 0.85 * x + 0.04 * y;
+        nextY = -0.04 * x + 0.85 * y + 1.6;
+      } else if (r < 0.93) {
+        //3
+        nextX = 0.2 * x + -0.26 * y;
+        nextY = 0.23 * x + 0.22 * y + 1.6;
+      } else {
+        //4
+        nextX = -0.15 * x + 0.28 * y;
+        nextY = 0.26 * x + 0.24 * y + 0.44;
       }
+
+      x = nextX;
+      y = nextY;
     };
 
     p5.background(0);
     p5.stroke(255);
 
-    rightTheta = p5.radians(rightAngle);
-    leftTheta = p5.radians(leftAngle);
-    p5.translate(p5.width / 2, p5.height);
-    p5.line(0, 0, 0, -120);
-    p5.translate(0, -120);
-    branch(120);
+    for (let i = 0; i < 10000; i++) {
+      let px = p5.map(x, -2.182, 2.6558, 0, p5.width);
+      let py = p5.map(y, 0, 9.9983, p5.height, 0);
+      p5.point(px, py);
+      nextPoint();
+    }
   };
 
   const saveCanvasAsImage = async () => {
@@ -61,19 +60,19 @@ function Tree({ hideTree, setHideTree, post, setPost }) {
   };
 
   const postCanvasAsImage = async () => {
-    setHideTree(true);
+    setHideFern(true);
     await ApiService.postImage(canvasRef.current);
     setPost(!post);
   };
 
   return (
-    <div className='tree' style={{ display: hideTree ? 'none' : 'block' }}>
+    <div className='fern' style={{ display: hideFern ? 'none' : 'block' }}>
       <Sketch setup={setup} draw={draw} />
 
       <form>
         <div className='parameter'>
           <span>Iterations:</span>
-          <label>{iteration}</label>
+          {/* <label>{iteration}</label> */}
           <input
             type='range'
             name='tree'
@@ -81,15 +80,15 @@ function Tree({ hideTree, setHideTree, post, setPost }) {
             min='0'
             max='12'
             step='1'
-            value={iteration}
+            // value={iteration}
             onChange={(e) => {
-              setIteration(e.target.value);
+              // setIteration(e.target.value);
             }}
           ></input>
         </div>
         <div className='parameter'>
           <span>Right Angle:</span>
-          <label>{rightAngle}°</label>
+          {/* <label>{rightAngle}°</label> */}
           <input
             type='range'
             name='tree'
@@ -97,16 +96,16 @@ function Tree({ hideTree, setHideTree, post, setPost }) {
             min='0'
             max='90'
             step='1'
-            value={rightAngle}
+            // value={rightAngle}
             onChange={(e) => {
-              setRightAngle(e.target.value);
+              // setRightAngle(e.target.value);
             }}
           ></input>
           <br />
         </div>
         <div className='parameter'>
           <span>Left Angle:</span>
-          <label>{leftAngle}°</label>
+          {/* <label>{rightAngle}°</label> */}
           <input
             type='range'
             name='tree'
@@ -114,16 +113,16 @@ function Tree({ hideTree, setHideTree, post, setPost }) {
             min='0'
             max='90'
             step='1'
-            value={leftAngle}
+            // value={leftAngle}
             onChange={(e) => {
-              setLeftAngle(e.target.value);
+              // setLeftAngle(e.target.value);
             }}
           ></input>
           <br />
         </div>
         <div className='parameter'>
           <span>Branch ratio:</span>
-          <label>{ratio}</label>
+          {/* <label>{ratio}</label> */}
           <input
             type='range'
             name='tree'
@@ -131,9 +130,9 @@ function Tree({ hideTree, setHideTree, post, setPost }) {
             min='0.5'
             max='0.79'
             step='0.01'
-            value={ratio}
+            // value={ratio}
             onChange={(e) => {
-              setRatio(e.target.value);
+              // setRatio(e.target.value);
             }}
           ></input>
         </div>
@@ -142,11 +141,11 @@ function Tree({ hideTree, setHideTree, post, setPost }) {
         <button onClick={postCanvasAsImage}>Submit</button>
         <button onClick={saveCanvasAsImage}>Download</button>
       </div>
-      <div className='close' onClick={() => setHideTree(true)}>
+      <div className='close' onClick={() => setHideFern(true)}>
         X
       </div>
     </div>
   );
 }
 
-export default Tree;
+export default Fern;

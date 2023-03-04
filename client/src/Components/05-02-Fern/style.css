@@ -1,4 +1,4 @@
-.tree {
+.fern {
   position: fixed;
   width: 730px;
   height: 670px;
@@ -12,47 +12,47 @@
   border-radius: 50px;
 }
 
-.tree .p5Canvas {
+.fern .p5Canvas {
   border-radius: 40px 40px 0 0;
 }
 
-.tree form {
+.fern form {
   margin-top: 8px;
 }
 
-.tree .parameter {
+.fern .parameter {
   display: flex;
   justify-content: center;
 }
 
-.tree span {
+.fern span {
   width: 110px;
 }
 
-.tree label {
+.fern label {
   display: inline-block;
   width: 30px;
   font-weight: bold;
 }
 
-.tree input {
+.fern input {
   margin: 2px 0 7px 20px;
   width: 200px;
 }
 
-.tree button {
+.fern button {
   margin-top: 5px;
   padding: 3px;
   width: 100px;
 }
 
-.tree .buttons {
+.fern .buttons {
   display: flex;
   justify-content: center;
   gap: 5px;
 }
 
-.tree .close {
+.fern .close {
   text-align: center;
   background-color: buttonface;
   border-radius: 4px;
@@ -65,6 +65,6 @@
   right: 20px;
 }
 
-.tree .close:hover {
+.fern .close:hover {
   background-color: rgb(117, 113, 113);
 }

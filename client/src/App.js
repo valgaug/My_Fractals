@@ -5,12 +5,13 @@ import Title from './Components/02-Title';
 import Collection from './Components/03-Collection';
 import Creation from './Components/04-Creation';
 import Tree from './Components/05-01-Tree';
-// import Fern from './Components/05-02-Fern';
+import Fern from './Components/05-02-Fern';
 import * as ApiService from './ApiService';
 import './fonts/ClimateCrisis-Regular.ttf';
 
 function App() {
-  const [hide, setHide] = useState(true);
+  const [hideTree, setHideTree] = useState(true);
+  const [hideFern, setHideFern] = useState(true);
   const [sources, setSources] = useState([]);
   const [post, setPost] = useState(false);
 
@@ -28,9 +29,19 @@ function App() {
       <Title />
       <div className='nav-title'></div>
       <Collection sources={sources} />
-      <Creation setHide={setHide} />
-      <Tree hide={hide} setHide={setHide} post={post} setPost={setPost} />
-      {/* <Fern hide={hide} setHide={setHide} post={post} setPost={setPost} /> */}
+      <Creation setHideTree={setHideTree} setHideFern={setHideFern} />
+      <Tree
+        hideTree={hideTree}
+        setHideTree={setHideTree}
+        post={post}
+        setPost={setPost}
+      />
+      <Fern
+        hideFern={hideFern}
+        setHideFern={setHideFern}
+        post={post}
+        setPost={setPost}
+      />
     </div>
   );
 }
