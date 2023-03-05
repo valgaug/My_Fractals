@@ -6,13 +6,6 @@ import * as ApiService from '../../ApiService';
 
 function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
   // const [iterations, setIterations] = useState(50000);
-  const [param1, setParam1] = useState(0);
-  const [param2, setParam2] = useState(0);
-  const [param3, setParam3] = useState(0);
-  const [param4, setParam4] = useState(0);
-  const [param5, setParam5] = useState(0);
-  const [param6, setParam6] = useState(0);
-
   const canvasRef = useRef(null);
 
   const setup = (p5, canvasParentRef) => {
@@ -25,7 +18,6 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
   const draw = (p5) => {
     p5.background(0);
     p5.stroke(255);
-    p5.colorMode(p5.HSB, param1);
 
     // Establish a range of values on the complex plane
     // A different range will allow us to "zoom" in or out on the fractal
@@ -43,7 +35,7 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
     p5.loadPixels();
 
     // Maximum number of iterations for each point on the complex plane
-    const maxiterations = 100;
+    const maxiterations = 1000;
 
     // x goes from xmin to xmax
     const xmax = xmin + w;
@@ -80,21 +72,15 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
         // We color each pixel based on how long it takes to get to infinity
         // If we never got there, let's pick the color black
         const pix = (i + j * p5.width) * 4;
-        const hue = p5.map(n, 0, maxiterations, param2, param3); //Hue is expressed in degrees, from red(0), through all the colors around the color wheel, and back to red (360).
-        let lig = p5.map(n, 0, maxiterations, param4, param5); //Brighness the amount of light, ranging between 0 and 100. The alpha channel goes from 0 (not visible) to 1 (fully opaque).
-
-        let colorHSB = p5.color(hue, param6, lig); //Saturation is the amount of color, and ranges between 0 and 100.
-
-        let colorRGB = colorHSB.levels;
-
+        const norm = p5.map(n, 0, maxiterations, 0, 1);
+        let bright = p5.map(p5.sqrt(norm), 0, 1, 0, 255);
         if (n === maxiterations) {
-          lig = 0;
-          // setParam5(0);
+          bright = 0;
         } else {
           // Gosh, we could make fancy colors here if we wanted
-          p5.pixels[pix + 0] = colorRGB[0];
-          p5.pixels[pix + 1] = colorRGB[1];
-          p5.pixels[pix + 2] = colorRGB[2];
+          p5.pixels[pix + 0] = bright;
+          p5.pixels[pix + 1] = bright;
+          p5.pixels[pix + 2] = bright;
           p5.pixels[pix + 3] = 255;
         }
         x += dx;
@@ -123,7 +109,7 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
     >
       <Sketch setup={setup} draw={draw} />
       <form>
-        {/* <div className='parameter'>
+        {/*       <div className='parameter'>
           <span>Iterations (=nb of points):</span>
           <label>{iterations}</label>
           <input
@@ -138,17 +124,17 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
               setIterations(e.target.value);
             }}
           ></input>
-        </div> */}
+        </div>
         <div className='parameter'>
-          <span>HSB range:</span>
+          <span>Turning stems to leaves:</span>
           <label>{param1}</label>
           <input
             type='range'
             name='fern'
             id='param1'
-            min='0'
-            max='100'
-            step='1'
+            min='-0.5'
+            max='0.5'
+            step='0.01'
             value={param1}
             onChange={(e) => {
               setParam1(e.target.value);
@@ -157,92 +143,6 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
           <br />
         </div>
         <div className='parameter'>
-          <span>Hue start:</span>
-          <label>{param2}</label>
-          <input
-            type='range'
-            name='fern'
-            id='param1'
-            min='0'
-            max='800'
-            step='1'
-            value={param2}
-            onChange={(e) => {
-              setParam2(e.target.value);
-            }}
-          ></input>
-          <br />
-        </div>
-        <div className='parameter'>
-          <span>Hue end:</span>
-          <label>{param3}</label>
-          <input
-            type='range'
-            name='fern'
-            id='param1'
-            min='0'
-            max='800'
-            step='1'
-            value={param3}
-            onChange={(e) => {
-              setParam3(e.target.value);
-            }}
-          ></input>
-          <br />
-        </div>
-        <div className='parameter'>
-          <span>Brightness start:</span>
-          <label>{param4}</label>
-          <input
-            type='range'
-            name='fern'
-            id='param1'
-            min='0'
-            max='800'
-            step='1'
-            value={param4}
-            onChange={(e) => {
-              setParam4(e.target.value);
-            }}
-          ></input>
-          <br />
-        </div>
-        <div className='parameter'>
-          <span>Brightness end:</span>
-          <label>{param5}</label>
-          <input
-            type='range'
-            name='fern'
-            id='param1'
-            min='0'
-            max='800'
-            step='1'
-            value={param5}
-            onChange={(e) => {
-              setParam5(e.target.value);
-            }}
-          ></input>
-          <br />
-        </div>
-        <div className='parameter'>
-          <span>Saturation:</span>
-          <label>{param6}</label>
-          <input
-            type='range'
-            name='fern'
-            id='param1'
-            min='0'
-            max='100'
-            step='1'
-            value={param6}
-            onChange={(e) => {
-              setParam6(e.target.value);
-            }}
-          ></input>
-          <br />
-        </div>
-
-        {/* <div className='parameter'>
           <span>Changing fern tilt:</span>
           <label>{param2}</label>
           <input

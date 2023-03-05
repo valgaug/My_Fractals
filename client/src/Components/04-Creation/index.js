@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import treePic from '../../assets/sym-tree-pic.png';
 import fernPic from '../../assets/fern.png';
-import mandelbrotPic from '../../assets/mandelbrot.jpeg';
+import mandelbrotPic from '../../assets/mandelbrot.png';
 
 function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
   return (

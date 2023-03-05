@@ -8,17 +8,19 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
   const [iterations, setIterations] = useState(50000);
   const [param1, setParam1] = useState(0);
   const [param2, setParam2] = useState(0.04);
-  const [param3, setParam3] = useState(1.6);
-  const [param4, setParam4] = useState(0.44);
+  // const [param3, setParam3] = useState(1.6);
+  // const [param4, setParam4] = useState(0.44);
   const canvasRef = useRef(null);
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 520).parent(canvasParentRef);
+    p5.frameRate(0.5);
     // p5.noLoop();
     canvasRef.current = p5.canvas;
   };
 
   const draw = (p5) => {
+    console.log('hi');
     let x = 0;
     let y = 0;
 
@@ -37,11 +39,13 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
       } else if (r < 0.93) {
         //3
         nextX = 0.2 * x + -0.26 * y;
-        nextY = 0.23 * x + 0.22 * y + param3;
+        nextY = 0.23 * x + 0.22 * y;
+        // nextY = 0.23 * x + 0.22 * y + param3;
       } else {
         //4
         nextX = -0.15 * x + 0.28 * y + 0;
-        nextY = 0.26 * x + 0.24 * y + param4;
+        nextY = 0.26 * x + 0.24 * y;
+        // nextY = 0.26 * x + 0.24 * y + param4;
       }
       x = nextX;
       y = nextY;
@@ -73,7 +77,7 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
       <Sketch setup={setup} draw={draw} />
       <form>
         <div className='parameter'>
-          <span>Iterations (=nb of points):</span>
+          <span>Iterations:</span>
           <label>{iterations}</label>
           <input
             type='range'
