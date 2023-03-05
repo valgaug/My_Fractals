@@ -9,12 +9,20 @@ function Creation({ setHideTree, setHideFern }) {
       <div className='creation-title'>2D Creation</div>
       <div className='fractals'>
         <div className='creation-tree' id='sym-tree'>
-          <img src={symTreePic} alt='Symetric tree'></img>
-          <button onClick={() => setHideTree(false)}>Tree</button>
+          <img
+            src={symTreePic}
+            alt='Symetric tree'
+            onClick={() => setHideTree(false)}
+          ></img>
+          <div className='fractal-title'>Tree</div>
         </div>
         <div className='creation-tree' id='fern'>
-          <img src={fern} alt='Symetric tree'></img>
-          <button onClick={() => setHideFern(false)}>Fern</button>
+          <img
+            src={fern}
+            alt='Symetric tree'
+            onClick={() => setHideFern(false)}
+          ></img>
+          <div className='fractal-title'>Fern</div>
         </div>
       </div>
     </div>
