@@ -6,12 +6,14 @@ import Collection from './Components/03-Collection';
 import Creation from './Components/04-Creation';
 import Tree from './Components/05-01-Tree';
 import Fern from './Components/05-02-Fern';
+import Mandelbrot from './Components/05-03-Mandelbrot';
 import * as ApiService from './ApiService';
 import './fonts/ClimateCrisis-Regular.ttf';
 
 function App() {
   const [hideTree, setHideTree] = useState(true);
   const [hideFern, setHideFern] = useState(true);
+  const [hideMandelbrot, setHideMandelbrot] = useState(true);
   const [sources, setSources] = useState([]);
   const [post, setPost] = useState(false);
 
@@ -29,7 +31,11 @@ function App() {
       <Title />
       <div className='nav-title'></div>
       <Collection sources={sources} />
-      <Creation setHideTree={setHideTree} setHideFern={setHideFern} />
+      <Creation
+        setHideTree={setHideTree}
+        setHideFern={setHideFern}
+        setHideMandelbrot={setHideMandelbrot}
+      />
       <Tree
         hideTree={hideTree}
         setHideTree={setHideTree}
@@ -39,6 +45,12 @@ function App() {
       <Fern
         hideFern={hideFern}
         setHideFern={setHideFern}
+        post={post}
+        setPost={setPost}
+      />
+      <Mandelbrot
+        hideMandelbrot={hideMandelbrot}
+        setHideMandelbrot={setHideMandelbrot}
         post={post}
         setPost={setPost}
       />
