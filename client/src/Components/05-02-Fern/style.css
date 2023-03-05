@@ -26,12 +26,12 @@
 }
 
 .fern span {
-  width: 110px;
+  width: 200px;
 }
 
 .fern label {
   display: inline-block;
-  width: 30px;
+  width: 40px;
   font-weight: bold;
 }
 

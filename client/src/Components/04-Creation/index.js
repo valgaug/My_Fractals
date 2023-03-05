@@ -10,7 +10,7 @@ function Creation({ setHideTree, setHideFern }) {
       <div className='fractals'>
         <div className='creation-tree' id='sym-tree'>
           <img src={symTreePic} alt='Symetric tree'></img>
-          <button onClick={() => setHideTree(false)}>Symetric tree</button>
+          <button onClick={() => setHideTree(false)}>Tree</button>
         </div>
         <div className='creation-tree' id='fern'>
           <img src={fern} alt='Symetric tree'></img>
