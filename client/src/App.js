@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Navbar from './Components/01-NavBar';
+import NavBar from './Components/01-00-NavBar';
+import NavItem from './Components/01-01-NavItem';
+import DropdownMenu from './Components/01-02-DropdownMenu';
 import Title from './Components/02-Title';
 import Collection from './Components/03-Collection';
 import Creation from './Components/04-Creation';
@@ -9,6 +11,7 @@ import Fern from './Components/05-02-Fern';
 import Mandelbrot from './Components/05-03-Mandelbrot';
 import * as ApiService from './ApiService';
 import './fonts/ClimateCrisis-Regular.ttf';
+import { ReactComponent as Menu } from './icons/menu.svg';
 
 function App() {
   const [hideTree, setHideTree] = useState(true);
@@ -27,7 +30,11 @@ function App() {
 
   return (
     <div className='App'>
-      <Navbar />
+      <NavBar>
+        <NavItem icon={<Menu />}>
+          <DropdownMenu />
+        </NavItem>
+      </NavBar>
       <Title />
       <div className='nav-title'></div>
       <Collection sources={sources} />

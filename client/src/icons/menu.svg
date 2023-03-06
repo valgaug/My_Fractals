@@ -1,0 +1,6 @@
+<svg viewBox='0 0 10 8' width='40'>
+  <path d='M1 1h8M1 4h 8M1 7h8' 
+        stroke='#000' 
+        stroke-width='2' 
+        stroke-linecap='round'/>
+</svg>
