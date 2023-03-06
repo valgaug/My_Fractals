@@ -6,9 +6,9 @@ function NavItem(props) {
 
   return (
     <div className='nav-item'>
-      <a href='#' className='icon-button' onClick={() => setOpen(!open)}>
+      <div className='icon-button' onClick={() => setOpen(!open)}>
         {props.icon}
-      </a>
+      </div>
       {open && props.children}
     </div>
   );

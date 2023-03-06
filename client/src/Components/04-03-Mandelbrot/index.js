@@ -10,7 +10,7 @@ function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
   const [param2, setParam2] = useState(42);
   const [param3, setParam3] = useState(115);
   const [param4, setParam4] = useState(342);
-  const [param5, setParam5] = useState(0);
+  const [param5, setParam5] = useState(378);
 
   const canvasRef = useRef(null);
 

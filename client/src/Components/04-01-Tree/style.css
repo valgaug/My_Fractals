@@ -1,0 +1,80 @@
+.tree {
+  position: fixed;
+  width: 730px;
+  height: 670px;
+  border: solid black;
+  padding-bottom: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: white;
+  border-radius: 55px;
+  font-size: 14px;
+}
+
+.p5Canvas {
+  border-radius: 50px 50px 0 0;
+}
+
+.tree form {
+  margin-top: 8px;
+}
+
+.tree .parameter {
+  display: flex;
+  justify-content: center;
+}
+
+.tree span {
+  width: 120px;
+}
+
+span,
+label,
+p,
+h1,
+h2 {
+  font-family: monospace;
+}
+
+.tree label {
+  display: inline-block;
+  width: 30px;
+  font-weight: bold;
+}
+
+.tree input {
+  margin: 2px 0 7px 20px;
+  width: 200px;
+}
+
+button {
+  margin-top: 5px;
+  padding: 3px;
+  width: 100px;
+  font-family: monospace;
+}
+
+.tree .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.tree .close {
+  text-align: center;
+  background-color: buttonface;
+  border-radius: 4px;
+  cursor: default;
+  border: solid black;
+  padding: 2px;
+  position: absolute;
+  width: 20px;
+  top: 20px;
+  right: 20px;
+}
+
+.tree .close:hover {
+  background-color: rgb(117, 113, 113);
+}

@@ -1,15 +1,16 @@
-.creation {
+#twoD-creation-id {
   margin-top: 60px;
+  padding-bottom: 60px;
   position: relative;
   font-size: xx-large;
   background: linear-gradient(
     0deg,
-    /* rgba(2, 0, 36, 1) 0%, */ rgb(3, 3, 40) 35%,
+    rgb(3, 3, 40) 35%,
     rgba(255, 255, 255, 1) 100%
   );
 }
 
-.creation-title {
+.twoD-creation-title {
   padding-left: 30px;
   margin-top: 30px;
   font-family: 'Home8';
@@ -43,7 +44,7 @@ img {
   cursor: pointer;
 }
 
-.fractal-title {
+.twoD-fractal-title {
   margin-top: 5px;
   color: white;
   text-align: center;

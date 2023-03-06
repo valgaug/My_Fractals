@@ -6,9 +6,9 @@ function DropdownMenuItem(props) {
     if (props.children === 'Public Collection') {
       var element = document.getElementById('collec-id');
     } else if (props.children === '2D Creation') {
-      element = document.getElementById('2D-creation-id');
+      element = document.getElementById('twoD-creation-id');
     } else if (props.children === '3D Creation') {
-      element = document.getElementById('3D-creation-id');
+      element = document.getElementById('threeD-creation-id');
     } else if (props.children === 'Documentation') {
       element = document.getElementById('doc-id');
     }

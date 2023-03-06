@@ -6,8 +6,8 @@ import mandelbrotPic from '../../assets/mandelbrot.png';
 
 function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
   return (
-    <div className='creation' id='2D-creation-id'>
-      <div className='creation-title'>2D Creation</div>
+    <div className='creation' id='twoD-creation-id'>
+      <div className='twoD-creation-title'>2D Creation</div>
       <div className='fractals'>
         <div className='creation-tree' id='sym-tree'>
           <img
@@ -15,7 +15,7 @@ function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
             alt='Tree pic'
             onClick={() => setHideTree(false)}
           ></img>
-          <div className='fractal-title'>Tree</div>
+          <div className='twoD-fractal-title'>Tree</div>
         </div>
         <div className='creation-tree' id='fern'>
           <img
@@ -23,7 +23,7 @@ function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
             alt='Fern pic'
             onClick={() => setHideFern(false)}
           ></img>
-          <div className='fractal-title'>Fern</div>
+          <div className='twoD-fractal-title'>Fern</div>
         </div>
         <div className='creation-tree' id='mandelbrot'>
           <img
@@ -31,7 +31,7 @@ function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
             alt='Mandelbrot pic'
             onClick={() => setHideMandelbrot(false)}
           ></img>
-          <div className='fractal-title'>Mandelbrot</div>
+          <div className='twoD-fractal-title'>Mandelbrot</div>
         </div>
       </div>
     </div>

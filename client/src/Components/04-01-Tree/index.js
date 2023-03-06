@@ -4,7 +4,7 @@ import './style.css';
 import canvasToImage from 'canvas-to-image';
 import * as ApiService from '../../ApiService';
 
-function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
+function Tree({ hideTree, setHideTree, post, setPost }) {
   const [iteration, setIteration] = useState(6);
   const [rightAngle, setRightAngle] = useState(30);
   const [leftAngle, setLeftAngle] = useState(30);
@@ -61,12 +61,12 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
   };
 
   const postCanvasAsImage = async () => {
-    setHide3DTree(true);
+    setHideTree(true);
     await ApiService.postImage(canvasRef.current);
     setPost(!post);
   };
 
-  if (hide3DTree) {
+  if (hideTree) {
     return null;
   }
 
@@ -145,11 +145,11 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
         <button onClick={postCanvasAsImage}>Submit</button>
         <button onClick={saveCanvasAsImage}>Download</button>
       </div>
-      <div className='close' onClick={() => setHide3DTree(true)}>
+      <div className='close' onClick={() => setHideTree(true)}>
         X
       </div>
     </div>
   );
 }
 
-export default ThreeDTree;
+export default Tree;
