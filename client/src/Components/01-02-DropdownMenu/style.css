@@ -4,7 +4,7 @@
   gap: 40px;
 }
 
-a {
+.drop-items {
   display: flex;
   align-items: center;
   background-color: white;
@@ -17,4 +17,5 @@ a {
   font-family: monospace;
   font-weight: bold;
   font-size: large;
+  cursor: pointer;
 }

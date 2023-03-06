@@ -6,7 +6,7 @@ import mandelbrotPic from '../../assets/mandelbrot.png';
 
 function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
   return (
-    <div className='creation'>
+    <div className='creation' id='2D-creation-id'>
       <div className='creation-title'>2D Creation</div>
       <div className='fractals'>
         <div className='creation-tree' id='sym-tree'>

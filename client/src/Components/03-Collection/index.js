@@ -3,7 +3,7 @@ import './style.css';
 
 function Collection({ sources }) {
   return (
-    <div className='collection'>
+    <div className='collection' id='collec-id'>
       {sources &&
         sources.map((source, i) => (
           <div className='collec_image' key={i}>

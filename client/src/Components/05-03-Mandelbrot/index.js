@@ -6,7 +6,7 @@ import * as ApiService from '../../ApiService';
 
 function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
   const [maxIterations, setMaxIterations] = useState(100);
-  const [param1, setParam1] = useState(32);
+  const [param1, setParam1] = useState(66);
   const [param2, setParam2] = useState(42);
   const [param3, setParam3] = useState(115);
   const [param4, setParam4] = useState(342);
