@@ -130,6 +130,9 @@ function Doc() {
       <h2>
         <span>Tree</span>
       </h2>
+      <svg viewBox='0 0 100 100'>
+        <script>if (a=0) {}</script>
+      </svg>
     </div>
   );
 }
