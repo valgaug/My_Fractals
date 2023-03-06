@@ -14,13 +14,12 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 520).parent(canvasParentRef);
-    p5.frameRate(0.5);
+    // p5.frameRate(0.5);
     // p5.noLoop();
     canvasRef.current = p5.canvas;
   };
 
   const draw = (p5) => {
-    console.log('hi');
     let x = 0;
     let y = 0;
 
@@ -72,8 +71,12 @@ function Fern({ hideFern, setHideFern, post, setPost }) {
     setPost(!post);
   };
 
+  if (hideFern) {
+    return null;
+  }
+
   return (
-    <div className='fern' style={{ display: hideFern ? 'none' : 'block' }}>
+    <div className='fern'>
       <Sketch setup={setup} draw={draw} />
       <form>
         <div className='parameter'>

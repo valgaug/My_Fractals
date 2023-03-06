@@ -4,25 +4,31 @@ import './style.css';
 import canvasToImage from 'canvas-to-image';
 import * as ApiService from '../../ApiService';
 
-function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
-  // const [iterations, setIterations] = useState(50000);
-  const [param1, setParam1] = useState(0);
-  const [param2, setParam2] = useState(0);
-  const [param3, setParam3] = useState(0);
-  const [param4, setParam4] = useState(0);
+function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
+  const [maxIterations, setMaxIterations] = useState(100);
+  const [param1, setParam1] = useState(32);
+  const [param2, setParam2] = useState(42);
+  const [param3, setParam3] = useState(115);
+  const [param4, setParam4] = useState(342);
   const [param5, setParam5] = useState(0);
-  const [param6, setParam6] = useState(0);
 
   const canvasRef = useRef(null);
 
+  // const [slider, setSlider] = useState(100);
+
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 520).parent(canvasParentRef);
-    // p5.noLoop();
+    // p5.frameRate(10);
     p5.pixelDensity(1);
     canvasRef.current = p5.canvas;
+    // const newSlider = p5.createSlider(0, 200, 100, 1);
+    // setSlider(newSlider);
   };
 
   const draw = (p5) => {
+    // const sliderValue = slider.value();
+    // p5.noLoop();
+    // p5.loop();
     p5.background(0);
     p5.stroke(255);
     p5.colorMode(p5.HSB, param1);
@@ -43,7 +49,7 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
     p5.loadPixels();
 
     // Maximum number of iterations for each point on the complex plane
-    const maxiterations = 100;
+    // const maxiterations = iterations;
 
     // x goes from xmin to xmax
     const xmax = xmin + w;
@@ -64,7 +70,7 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
         let a = x;
         let b = y;
         let n = 0;
-        while (n < maxiterations) {
+        while (n < maxIterations) {
           const aa = a * a;
           const bb = b * b;
           const twoab = 2.0 * a * b;
@@ -80,14 +86,14 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
         // We color each pixel based on how long it takes to get to infinity
         // If we never got there, let's pick the color black
         const pix = (i + j * p5.width) * 4;
-        const hue = p5.map(n, 0, maxiterations, param2, param3); //Hue is expressed in degrees, from red(0), through all the colors around the color wheel, and back to red (360).
-        let lig = p5.map(n, 0, maxiterations, param4, param5); //Brighness the amount of light, ranging between 0 and 100. The alpha channel goes from 0 (not visible) to 1 (fully opaque).
 
-        let colorHSB = p5.color(hue, param6, lig); //Saturation is the amount of color, and ranges between 0 and 100.
+        const hue = p5.map(n, 0, maxIterations, param2, param3); //Hue is expressed in degrees, from red(0), through all the colors around the color wheel, and back to red (360).
+        let lig = p5.map(n, 0, maxIterations, param4, param5); //Brighness the amount of light, ranging between 0 and 100. The alpha channel goes from 0 (not visible) to 1 (fully opaque).
 
+        let colorHSB = p5.color(hue, 100, lig); //Saturation is the amount of color, and ranges between 0 and 100.
         let colorRGB = colorHSB.levels;
 
-        if (n === maxiterations) {
+        if (n === maxIterations) {
           lig = 0;
           // setParam5(0);
         } else {
@@ -114,38 +120,37 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
     setPost(!post);
   };
 
+  if (hideMandelbrot) {
+    return null;
+  }
+
   return (
-    <div
-      className='fern'
-      style={{
-        display: hideMandelbrot ? 'none' : 'block',
-      }}
-    >
+    <div className='mandelbrot'>
       <Sketch setup={setup} draw={draw} />
       <form>
-        {/* <div className='parameter'>
-          <span>Iterations (=nb of points):</span>
-          <label>{iterations}</label>
+        <div className='parameter'>
+          <span>Iterations:</span>
+          <label>{maxIterations}</label>
           <input
             type='range'
-            name='fern'
+            name='mandelbrot'
             id='iteration'
             min='0'
-            max='40000'
-            step='100'
-            value={iterations}
+            max='200'
+            step='5'
+            value={maxIterations}
             onChange={(e) => {
-              setIterations(e.target.value);
+              setMaxIterations(e.target.value);
             }}
           ></input>
-        </div> */}
+        </div>
         <div className='parameter'>
           <span>HSB range:</span>
           <label>{param1}</label>
           <input
             type='range'
-            name='fern'
-            id='param1'
+            name='mandelbrot'
+            id='HSB_range'
             min='0'
             max='100'
             step='1'
@@ -161,10 +166,10 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
           <label>{param2}</label>
           <input
             type='range'
-            name='fern'
+            name='mandelbrot'
             id='param1'
             min='0'
-            max='800'
+            max='200'
             step='1'
             value={param2}
             onChange={(e) => {
@@ -178,10 +183,10 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
           <label>{param3}</label>
           <input
             type='range'
-            name='fern'
+            name='mandelbrot'
             id='param1'
             min='0'
-            max='800'
+            max='200'
             step='1'
             value={param3}
             onChange={(e) => {
@@ -195,7 +200,7 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
           <label>{param4}</label>
           <input
             type='range'
-            name='fern'
+            name='mandlebrot'
             id='param1'
             min='0'
             max='800'
@@ -212,7 +217,7 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
           <label>{param5}</label>
           <input
             type='range'
-            name='fern'
+            name='mandelbrot'
             id='param1'
             min='0'
             max='800'
@@ -224,41 +229,6 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
           ></input>
           <br />
         </div>
-        <div className='parameter'>
-          <span>Saturation:</span>
-          <label>{param6}</label>
-          <input
-            type='range'
-            name='fern'
-            id='param1'
-            min='0'
-            max='100'
-            step='1'
-            value={param6}
-            onChange={(e) => {
-              setParam6(e.target.value);
-            }}
-          ></input>
-          <br />
-        </div>
-
-        {/* <div className='parameter'>
-          <span>Changing fern tilt:</span>
-          <label>{param2}</label>
-          <input
-            type='range'
-            name='fern'
-            id='param2'
-            min='-0.1'
-            max='0.1'
-            step='0.005'
-            value={param2}
-            onChange={(e) => {
-              setParam2(e.target.value);
-            }}
-          ></input>
-          <br />
-        </div> */}
       </form>
       <div className='buttons'>
         <button onClick={postCanvasAsImage}>Submit</button>
@@ -271,4 +241,4 @@ function Fern({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
   );
 }
 
-export default Fern;
+export default Mandelbrot;

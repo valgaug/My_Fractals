@@ -66,10 +66,13 @@ function Tree({ hideTree, setHideTree, post, setPost }) {
     setPost(!post);
   };
 
-  return (
-    <div className='tree' style={{ display: hideTree ? 'none' : 'block' }}>
-      <Sketch setup={setup} draw={draw} />
+  if (hideTree) {
+    return null;
+  }
 
+  return (
+    <div className='tree'>
+      <Sketch setup={setup} draw={draw} />
       <form>
         <div className='parameter'>
           <span>Iterations:</span>

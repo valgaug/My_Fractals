@@ -1,19 +1,15 @@
 .mandelbrot {
   position: fixed;
   width: 730px;
-  height: 670px;
-  border: solid black;
+  height: 720px;
+  border: solid black 5px;
   padding-bottom: 5px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
   background-color: white;
-  border-radius: 50px;
-}
-
-.mandelbrot .p5Canvas {
-  border-radius: 40px 40px 0 0;
+  border-radius: 55px;
 }
 
 .mandelbrot form {
