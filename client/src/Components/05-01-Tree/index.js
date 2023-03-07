@@ -5,7 +5,7 @@ import canvasToImage from 'canvas-to-image';
 import * as ApiService from '../../ApiService';
 
 function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
-  const [rotateSlider, setRotateSlider] = useState(0);
+  // const [rotateSlider, setRotateSlider] = useState(0);
   const [iteration, setIteration] = useState(4);
   const [yAngle, setYAngle] = useState(100);
   const [zAngle, setZAngle] = useState(30);
@@ -25,7 +25,8 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
   const draw = (p5) => {
     p5.background(255);
     p5.translate(0, p5.height / 2 - 20, 0);
-    p5.rotateY(rotateSlider);
+    p5.rotateY(p5.frameCount);
+    // p5.rotateY(rotateSlider);
     let recursion = 0;
 
     const branch = (len) => {
@@ -198,7 +199,7 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
             }}
           ></input>
         </div>
-        <div className='parameter'>
+        {/* <div className='parameter'>
           <span>Rotate:</span>
           <label>{rotateSlider}°</label>
           <input
@@ -213,7 +214,7 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
               setRotateSlider(e.target.value);
             }}
           ></input>
-        </div>
+        </div> */}
       </form>
       <div className='buttons'>
         <button onClick={postCanvasAsImage}>Submit</button>
