@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Sketch from 'react-p5';
 import './style.css';
 import canvasToImage from 'canvas-to-image';
 import * as ApiService from '../../ApiService';
 
 function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
+  const [refresh, setRefresh] = useState(false);
   const [rotateSlider, setRotateSlider] = useState(0);
   const [iteration, setIteration] = useState(4);
   const [yAngle, setYAngle] = useState(100);
@@ -14,17 +15,38 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
   const [green, setGreen] = useState(120);
   const [blue, setBlue] = useState(40);
 
+  // const [rightAngle, setRightAngle] = useState(30);
+  // const [leftAngle, setLeftAngle] = useState(30);
+  // const [ratio, setRatio] = useState(0.55);
+  // const [comp, setComp] = useState(null);
   const canvasRef = useRef(null);
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 520, p5.WEBGL).parent(canvasParentRef);
     canvasRef.current = p5.canvas;
     p5.angleMode(p5.DEGREES);
+    // p5.frameRate(0.1);
+
+    // p5.noLoop();
+
+    const button = document.getElementById('refresh');
+    button.addEventListener('click', () => {
+      p5.redraw();
+    });
+
+    const elSlider = document.getElementById('slider-rotate');
+    elSlider.addEventListener('click', () => {
+      p5.redraw();
+    });
   };
 
   const draw = (p5) => {
     p5.background(255);
+    // p5.stroke(0);
+    // p5.orbitControl();
+
     p5.translate(0, p5.height / 2 - 20, 0);
+    // p5.rotateY(p5.frameCount);
     p5.rotateY(rotateSlider);
     let recursion = 0;
 
@@ -45,9 +67,18 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
           recursion--;
         }
       } else {
+        // let red = 80;
+        // let g = 120;
+        // let b = 40;
+
+        // let r = 80 + p5.random(-20, 20);
+        // let g = 120 + p5.random(-20, 20);
+        // let b = 40 + p5.random(-20, 20);
+
         p5.fill(red, green, blue, 200);
         p5.translate(5, 0, 0);
         p5.rotateZ(5, 0, 0);
+
         p5.beginShape();
         for (let i = 45; i < 135; i++) {
           let rad = 7;
@@ -85,6 +116,7 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
   return (
     <div className='tree'>
       <Sketch setup={setup} draw={draw}></Sketch>
+
       <form>
         <div className='parameter'>
           <span>Iterations:</span>
@@ -131,6 +163,22 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
             value={zAngle}
             onChange={(e) => {
               setZAngle(e.target.value);
+            }}
+          ></input>
+        </div>
+        <div className='parameter'>
+          <span>Rotate:</span>
+          <label>{rotateSlider}°</label>
+          <input
+            type='range'
+            name='3Dtree'
+            id='slider-rotate'
+            min='0'
+            max='360'
+            step='1'
+            value={rotateSlider}
+            onChange={(e) => {
+              setRotateSlider(e.target.value);
             }}
           ></input>
         </div>
@@ -184,7 +232,7 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
         </div>
         <div className='parameter'>
           <span>Blue:</span>
-          <label>{blue}</label>
+          <label>{red}</label>
           <input
             type='range'
             name='tree'
@@ -198,24 +246,16 @@ function ThreeDTree({ hide3DTree, setHide3DTree, post, setPost }) {
             }}
           ></input>
         </div>
-        <div className='parameter'>
-          <span>Rotate:</span>
-          <label>{rotateSlider}°</label>
-          <input
-            type='range'
-            name='3Dtree'
-            id='slider-rotate'
-            min='0'
-            max='360'
-            step='1'
-            value={rotateSlider}
-            onChange={(e) => {
-              setRotateSlider(e.target.value);
-            }}
-          ></input>
-        </div>
       </form>
       <div className='buttons'>
+        <button
+          id='refresh'
+          onClick={() => {
+            setRefresh(!refresh);
+          }}
+        >
+          Refresh
+        </button>
         <button onClick={postCanvasAsImage}>Submit</button>
         <button onClick={saveCanvasAsImage}>Download</button>
       </div>

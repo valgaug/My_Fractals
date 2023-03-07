@@ -11,6 +11,7 @@ function ThreeDCreation({ setHide3DTree }) {
           <img
             src={ThreeDTreePic}
             alt='Tree pic'
+            className='img-creation'
             onClick={() => setHide3DTree(false)}
           ></img>
           <div className='threeD-fractal-title'>3D Tree</div>

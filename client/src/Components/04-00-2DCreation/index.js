@@ -13,6 +13,7 @@ function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
           <img
             src={treePic}
             alt='Tree pic'
+            className='img-creation'
             onClick={() => setHideTree(false)}
           ></img>
           <div className='twoD-fractal-title'>Tree</div>
@@ -21,6 +22,7 @@ function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
           <img
             src={fernPic}
             alt='Fern pic'
+            className='img-creation'
             onClick={() => setHideFern(false)}
           ></img>
           <div className='twoD-fractal-title'>Fern</div>
@@ -29,6 +31,7 @@ function Creation({ setHideTree, setHideFern, setHideMandelbrot }) {
           <img
             src={mandelbrotPic}
             alt='Mandelbrot pic'
+            className='img-creation'
             onClick={() => setHideMandelbrot(false)}
           ></img>
           <div className='twoD-fractal-title'>Mandelbrot</div>

@@ -1,7 +1,7 @@
 .doc {
   margin: 150px auto;
   display: flex;
-  width: 400px;
+  width: 500px;
   flex-direction: column;
   justify-content: center;
 }
@@ -36,4 +36,12 @@ p {
   margin: auto;
   font-style: italic;
   margin-top: -20px;
+}
+
+.margLeft {
+  margin-left: 20px;
+}
+
+.margLeft2 {
+  margin-left: 40px;
 }

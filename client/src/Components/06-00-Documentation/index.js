@@ -130,9 +130,57 @@ function Doc() {
       <h2>
         <span>Tree</span>
       </h2>
-      <svg viewBox='0 0 100 100'>
-        <script>if (a=0) {}</script>
-      </svg>
+      <code>
+        <span>let rightTheta;</span>
+        <br />
+        <span>let leftTheta;</span>
+        <br />
+        <span>let recursion = 0;</span> <br /> <br />
+        <span> const branch = (h) ={`>`}</span> <br />
+        <span className='margLeft'>h *= ratio;</span>
+        <br />
+        <span className='margLeft'>
+          if (recursion {`<`} iteration) {`{`}
+        </span>{' '}
+        <br />
+        <span className='margLeft2'>recursion++;</span> <br /> <br />
+        <span className='margLeft2'>{`// right branches`}</span> <br />
+        <span className='margLeft2'></span>
+        <span>{`// Save the current state of transformation`}</span>
+        <br />
+        <span className='margLeft2'>push();</span> <br />
+        <span className='margLeft2'>rotate(rightTheta);</span> <br />
+        <span className='margLeft2'>line(0, 0, 0, -h);</span> <br />
+        <span className='margLeft2'>translate(0, -h);</span> <br />
+        <span className='margLeft2'>branch(h);</span> <br />
+        <span className='margLeft2'>pop();</span>
+        <br />
+        <span className='margLeft2'>{`// Restore the previous matrix state`}</span>
+        <span className='margLeft2'> </span>
+        <span className='margLeft2'></span>
+        <br />
+        <br />
+        <span className='margLeft2'>{`//left branches`}</span>
+        <br />
+        <span className='margLeft2'>push();</span> <br />
+        <span className='margLeft2'>rotate(-leftTheta);</span> <br />
+        <span className='margLeft2'>line(0, 0, 0, -h);</span> <br />
+        <span className='margLeft2'>translate(0, -h);</span> <br />
+        <span className='margLeft2'>branch(h);</span> <br />
+        <span className='margLeft2'>pop();</span>
+        <br />
+        <span className='margLeft2'>recursion--;</span> <br />
+        <span className='margLeft'>{`}`}</span> <br />
+        <span>{`}`};</span> <br /> <br />
+        <span>background(0);</span> <br />
+        <span>stroke(255);</span> <br />
+        <span>rightTheta = radians(rightAngle);</span> <br />
+        <span>leftTheta = radians(leftAngle);</span> <br />
+        <span>translate(width / 2, height);</span> <br />
+        <span> line(0, 0, 0, -120);</span> <br />
+        <span>translate(0, -120); </span> <br />
+        <span>branch(120);</span> <br />
+      </code>
     </div>
   );
 }
