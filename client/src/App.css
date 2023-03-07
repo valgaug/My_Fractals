@@ -1,0 +1,57 @@
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-title {
+  position: absolute;
+  background-image: url(./assets/fractal-home.jpeg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 0;
+  padding-top: 61.3%;
+  z-index: -1;
+}
+
+@font-face {
+  font-family: 'Home1';
+  src: local('ClimateCrisis-Regular.ttf'),
+    url('./fonts/ClimateCrisis-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home2';
+  src: local('SairaStencilOne-Regular.ttf'),
+    url('./fonts/SairaStencilOne-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home3';
+  src: local('Yaahowu.ttf'), url('./fonts/Yaahowu.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home4';
+  src: local('Bavistage.otf'), url('./fonts/Bavistage.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home5';
+  src: local('Motherva.otf'), url('./fonts/Motherva.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home6';
+  src: local('Petrona-Bold'), url('./fonts/Petrona-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home7';
+  src: url('./fonts/Moon2.0-Regular.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Home8';
+  src: url('./fonts/Monastic.ttf');
+}

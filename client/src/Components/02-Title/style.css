@@ -1,0 +1,12 @@
+.title {
+  color: white;
+  height: 35vw;
+  font-family: 'Home8';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 180px;
+  letter-spacing: 10px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}

@@ -1,0 +1,66 @@
+.fern {
+  position: fixed;
+  width: 730px;
+  height: 640px;
+  border: solid black;
+  padding-bottom: 5px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: white;
+  border-radius: 55px;
+}
+
+.fern form {
+  margin-top: 8px;
+}
+
+.fern .parameter {
+  display: flex;
+  justify-content: center;
+}
+
+.fern span {
+  width: 200px;
+}
+
+.fern label {
+  display: inline-block;
+  width: 40px;
+  font-weight: bold;
+}
+
+.fern input {
+  margin: 2px 0 7px 20px;
+  width: 200px;
+}
+
+.fern button {
+  margin-top: 5px;
+  padding: 3px;
+  width: 100px;
+}
+
+.fern .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.fern .close {
+  text-align: center;
+  background-color: buttonface;
+  border-radius: 4px;
+  cursor: default;
+  border: solid black;
+  padding: 2px;
+  position: absolute;
+  width: 20px;
+  top: 20px;
+  right: 20px;
+}
+
+.fern .close:hover {
+  background-color: rgb(117, 113, 113);
+}

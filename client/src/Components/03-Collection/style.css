@@ -1,0 +1,10 @@
+.collection {
+  position: relative;
+  height: 810px;
+  width: 500px;
+  align-self: center;
+  overflow-y: scroll;
+  border-radius: 30px;
+  z-index: 5;
+  background-color: black;
+}
