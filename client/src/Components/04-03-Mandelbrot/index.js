@@ -23,11 +23,11 @@ function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
     canvasRef.current = p5.canvas;
   };
 
-  const draw = (p5) => {
-    let cenX = 0;
-    let cenY = 0;
-    let scale = 1;
+  let cenX = 0;
+  let cenY = 0;
+  let scale = 1;
 
+  const draw = (p5) => {
     p5.background(0);
     p5.stroke(255);
     p5.colorMode(p5.HSB);
@@ -86,6 +86,37 @@ function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
       p5.updatePixels();
     };
     drawBrot();
+
+    let redraw = false;
+    if (p5.keyIsDown(p5.LEFT_ARROW)) {
+      cenX -= (0.5 * 1) / scale;
+      redraw = true;
+    }
+    if (p5.keyIsDown(p5.RIGHT_ARROW)) {
+      cenX += (0.5 * 1) / scale;
+      redraw = true;
+    }
+    if (p5.keyIsDown(p5.UP_ARROW)) {
+      cenY -= (0.5 * 1) / scale;
+      redraw = true;
+    }
+    if (p5.keyIsDown(p5.DOWN_ARROW)) {
+      cenY += (0.5 * 1) / scale;
+      redraw = true;
+    }
+
+    if (p5.keyIsDown(90)) {
+      scale += scale * 0.5;
+      redraw = true;
+    }
+    if (p5.keyIsDown(88)) {
+      scale -= scale * 0.5;
+      redraw = true;
+    }
+
+    if (redraw) {
+      drawBrot();
+    }
   };
 
   const saveCanvasAsImage = async () => {
