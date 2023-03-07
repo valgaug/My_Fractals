@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css';
-import ThreeDTreePic from '../../assets/sym-tree-pic.png';
+import ThreeDTreePic from '../../assets/tree3D.png';
 
 function ThreeDCreation({ setHide3DTree }) {
   return (
