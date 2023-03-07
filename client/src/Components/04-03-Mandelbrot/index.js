@@ -5,12 +5,12 @@ import canvasToImage from 'canvas-to-image';
 import * as ApiService from '../../ApiService';
 
 function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
-  const [maxIterations, setMaxIterations] = useState(100);
-  const [param1, setParam1] = useState(66);
-  const [param2, setParam2] = useState(42);
-  const [param3, setParam3] = useState(115);
-  const [param4, setParam4] = useState(342);
-  const [param5, setParam5] = useState(378);
+  // const [maxIterations, setMaxIterations] = useState(100);
+  // const [param1, setParam1] = useState(66);
+  // const [param2, setParam2] = useState(42);
+  // const [param3, setParam3] = useState(115);
+  // const [param4, setParam4] = useState(342);
+  // const [param5, setParam5] = useState(378);
 
   const canvasRef = useRef(null);
 
@@ -18,96 +18,74 @@ function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(730, 520).parent(canvasParentRef);
-    // p5.frameRate(10);
-    p5.pixelDensity(1);
+    // p5.pixelDensity(1);
+    p5.noStroke();
     canvasRef.current = p5.canvas;
-    // const newSlider = p5.createSlider(0, 200, 100, 1);
-    // setSlider(newSlider);
   };
 
   const draw = (p5) => {
-    // const sliderValue = slider.value();
-    // p5.noLoop();
-    // p5.loop();
+    let cenX = 0;
+    let cenY = 0;
+    let scale = 1;
+
     p5.background(0);
     p5.stroke(255);
-    p5.colorMode(p5.HSB, param1);
+    p5.colorMode(p5.HSB);
 
-    // Establish a range of values on the complex plane
-    // A different range will allow us to "zoom" in or out on the fractal
+    const pixelToPoint = (x, y) => {
+      let p = p5.createVector(
+        (x - p5.width / 2) * (4 / p5.width) * (73 / (52 * scale)) + cenX,
+        (y - p5.height / 2) * (4 / p5.height) * (1 / scale) + cenY
+      );
+      return p;
+    };
 
-    // It all starts with the width, try higher or lower values
-    const w = 3.5;
-    const h = (w * p5.height) / p5.width;
-
-    // Start at negative half the width and height
-    const xmin = -w / 1.5;
-    const ymin = -h / 2;
-
-    // Make sure we can write to the pixels[] array.
-    // Only need to do this once since we don't do any other drawing.
-    p5.loadPixels();
-
-    // Maximum number of iterations for each point on the complex plane
-    // const maxiterations = iterations;
-
-    // x goes from xmin to xmax
-    const xmax = xmin + w;
-    // y goes from ymin to ymax
-    const ymax = ymin + h;
-
-    // Calculate amount we increment x,y for each pixel
-    const dx = (xmax - xmin) / p5.width;
-    const dy = (ymax - ymin) / p5.height;
-
-    // Start y
-    let y = ymin;
-    for (let j = 0; j < p5.height; j++) {
-      // Start x
-      let x = xmin;
-      for (let i = 0; i < p5.width; i++) {
-        // Now we test, as we iterate z = z^2 + cm does z tend towards infinity?
-        let a = x;
-        let b = y;
-        let n = 0;
-        while (n < maxIterations) {
-          const aa = a * a;
-          const bb = b * b;
-          const twoab = 2.0 * a * b;
-          a = aa - bb + x;
-          b = twoab + y;
-          // Infinity in our finite world is simple, let's just consider it 16
-          if (p5.dist(aa, bb, 0, 0) > 16) {
-            break; // Bail
-          }
-          n++;
+    const calculatePoint = (c) => {
+      let z0 = p5.createVector(0, 0);
+      let i = 0;
+      let bounds = 2;
+      let isIn = true;
+      while (i < 50 && isIn) {
+        z0 = p5.createVector(
+          z0.x * z0.x - z0.y * z0.y + c.x,
+          2 * z0.x * z0.y + c.y
+        );
+        i++;
+        if (z0.mag() > bounds) {
+          isIn = false;
         }
-
-        // We color each pixel based on how long it takes to get to infinity
-        // If we never got there, let's pick the color black
-        const pix = (i + j * p5.width) * 4;
-
-        const hue = p5.map(n, 0, maxIterations, param2, param3); //Hue is expressed in degrees, from red(0), through all the colors around the color wheel, and back to red (360).
-        let lig = p5.map(n, 0, maxIterations, param4, param5); //Brighness the amount of light, ranging between 0 and 100. The alpha channel goes from 0 (not visible) to 1 (fully opaque).
-
-        let colorHSB = p5.color(hue, 100, lig); //Saturation is the amount of color, and ranges between 0 and 100.
-        let colorRGB = colorHSB.levels;
-
-        if (n === maxIterations) {
-          lig = 0;
-          // setParam5(0);
-        } else {
-          // Gosh, we could make fancy colors here if we wanted
-          p5.pixels[pix + 0] = colorRGB[0];
-          p5.pixels[pix + 1] = colorRGB[1];
-          p5.pixels[pix + 2] = colorRGB[2];
-          p5.pixels[pix + 3] = 255;
-        }
-        x += dx;
       }
-      y += dy;
-    }
-    p5.updatePixels();
+      return {
+        i: i,
+        isIn: isIn,
+      };
+    };
+
+    const drawBrot = () => {
+      for (let x = 0; x < p5.width; x++) {
+        for (let y = 0; y < p5.height; y++) {
+          let c = pixelToPoint(x, y);
+          let result = calculatePoint(c);
+          if (result.isIn) {
+            p5.set(x, y, p5.color(0));
+          } else if (result.i > 1) {
+            p5.set(
+              x,
+              y,
+              p5.color(
+                150 + 200 - ((p5.pow(result.i / 50, 0.5) * 200) % 255),
+                80,
+                100
+              )
+            );
+          } else {
+            p5.set(x, y, p5.color(50));
+          }
+        }
+      }
+      p5.updatePixels();
+    };
+    drawBrot();
   };
 
   const saveCanvasAsImage = async () => {
@@ -127,7 +105,7 @@ function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
   return (
     <div className='mandelbrot'>
       <Sketch setup={setup} draw={draw} />
-      <form>
+      {/* <form>
         <div className='parameter'>
           <span>Iterations:</span>
           <label>{maxIterations}</label>
@@ -229,7 +207,7 @@ function Mandelbrot({ hideMandelbrot, setHideMandelbrot, post, setPost }) {
           ></input>
           <br />
         </div>
-      </form>
+      </form> */}
       <div className='buttons'>
         <button onClick={postCanvasAsImage}>Submit</button>
         <button onClick={saveCanvasAsImage}>Download</button>
