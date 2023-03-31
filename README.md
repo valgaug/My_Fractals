@@ -1,1 +1,1 @@
-# solo-project: My Fractals
+# My Fractals
