@@ -1,5 +1,5 @@
-// const url = 'https://my-fractals-9udx4pbv4-valgaug.vercel.app';
-const url = 'http://localhost:3001';
+const url = 'https://my-fractals-9udx4pbv4-valgaug.vercel.app';
+// const url = 'http://localhost:3001';
 
 export const postImage = async (canvas) => {
   let imageBlob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/png'));
