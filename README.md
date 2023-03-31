@@ -5,7 +5,7 @@
 
 # My Fractals
 
-My Fractals is an educative tool to help understanding what a fractal is. It lets the user the ability to draw different sort of fractals in 2D and 3D.
+My Fractals is an educative tool to help understanding what fractals are about. It lets the user the ability to draw different sort of fractals in 2D and 3D.
 
 Key features:
 
