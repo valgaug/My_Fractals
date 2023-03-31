@@ -10,7 +10,7 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
-app.use('/', (req, res) => {
+app.use('/vercelTest', (req, res) => {
   res.json({ message: 'Hello from Express App' });
 });
 app.use(router);
