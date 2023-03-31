@@ -28,5 +28,7 @@ https://user-images.githubusercontent.com/115923254/229201729-5ee20f01-0bb1-4cb3
 
 # Tech Stack
 
-![techstack](https://user-images.githubusercontent.com/115923254/229207586-e55eeda5-db33-41d6-a737-692df72f2a3c.png)
+<p align="center">
+<img src='https://user-images.githubusercontent.com/115923254/229207586-e55eeda5-db33-41d6-a737-692df72f2a3c.png' height='400'/>
+</p>
 
