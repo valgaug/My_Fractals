@@ -6,8 +6,8 @@ const path = require('path');
 
 exports.getImages = async (req, res) => {
   try {
+    const buffer_images = await image.find();
     res.json({ message: 'hello from get images' });
-    // const buffer_images = await image.find();
     // const images = buffer_images.map((img) => Buffer.from(img.data, 'base64').toString('base64'));
     // res.send(images);
   } catch (e) {
