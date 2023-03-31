@@ -7,10 +7,9 @@ const path = require('path');
 exports.getImages = async (req, res) => {
   try {
     const buffer_images = await image.find();
-    const images = buffer_images.map((img) =>
-      Buffer.from(img.data, 'base64').toString('base64')
-    );
-    res.send(images);
+    const images = buffer_images.map((img) => Buffer.from(img.data, 'base64').toString('base64'));
+    res.json({ message: 'hello from get images' });
+    // res.send(images);
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
@@ -20,9 +19,7 @@ exports.getImages = async (req, res) => {
 exports.postImage = async (req, res) => {
   try {
     let img = {
-      data: fs.readFileSync(
-        path.join(__dirname + '/../Images/' + req.file.filename)
-      ),
+      data: fs.readFileSync(path.join(__dirname + '/../Images/' + req.file.filename)),
       contentType: 'image/png',
     };
     await image.create(img);
