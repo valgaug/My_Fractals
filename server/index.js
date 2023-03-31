@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = require('./router.js');
-const cors = require ('cors');
+const cors = require('cors');
 const app = express();
 
 const PORT = 3001;
@@ -10,6 +10,9 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
+app.use('/', (req, res) => {
+  res.json({ message: 'Hello from Express App' });
+});
 app.use(router);
 
 app.listen(PORT, () => {
