@@ -28,18 +28,5 @@ https://user-images.githubusercontent.com/115923254/229201729-5ee20f01-0bb1-4cb3
 
 # Tech Stack
 
-- P5 JS
-  
-- REACT
-
-- NODE
-
-- EXPRESS
-
-- MONGOOSE
-
-- MONGODB
-
-- MULTER
-
+![techstack](https://user-images.githubusercontent.com/115923254/229207586-e55eeda5-db33-41d6-a737-692df72f2a3c.png)
 
