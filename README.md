@@ -10,18 +10,21 @@ My Fractals is an educative tool to help understanding what fractals are about. 
 Key features:
 
 - draw 2D fractals
-  
 - draw 3D fractals
-  
 - ability to change multiple paramters while drawing
-  
 - download option
-  
 - submit option to share in a public collection
-  
 - documentation
-  
 
+
+## Getting started
+
+- to install the required dependencies run `npm install` in both client and server
+- connect your PostgreSQL
+- run `npm start` in the client folder
+- run `node index.js` in the server folder
+
+  
 # Demo Video
 
 https://user-images.githubusercontent.com/115923254/229201729-5ee20f01-0bb1-4cb3-bba5-fe89678ccd34.mp4
