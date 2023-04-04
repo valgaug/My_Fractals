@@ -11,7 +11,7 @@ Key features:
 
 - draw 2D fractals
 - draw 3D fractals
-- ability to change multiple paramters while drawing
+- ability to change multiple parameters while drawing
 - download option
 - submit option to share in a public collection
 - documentation
